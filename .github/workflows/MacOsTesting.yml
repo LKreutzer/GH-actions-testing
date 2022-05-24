@@ -1,0 +1,13 @@
+name: Test MacOs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testing-job:
+    runs-on: macos-10.15
+    steps:
+      - name: Background process
+        run: |
+          brew install coreutils
+          gtimeout 20 bash -c "while true; do echo AAAAAAAAAAAA; date; mpstat; free -m; iostat; sleep 5; done &  echo 123123123123 "
