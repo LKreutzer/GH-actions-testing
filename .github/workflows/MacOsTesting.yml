@@ -9,5 +9,6 @@ jobs:
     steps:
       - name: Background process
         run: |
+          echo $0
           brew install coreutils
           while true; do echo AAAAAAAAAAAA; date; vm_stat; iostat; df -h; sleep 2; done &  echo 123123123123
