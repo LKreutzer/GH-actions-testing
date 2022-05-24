@@ -9,5 +9,5 @@ jobs:
     steps:
       - name: Background process
         run: |
-          brew install coreutils sysstat
-          gtimeout 20 bash -c "while true; do echo AAAAAAAAAAAA; date; mpstat; free -m; iostat; sleep 5; done &  echo 123123123123 "
+          brew install coreutils
+          gtimeout 20 bash -c "while true; do echo AAAAAAAAAAAA; date; vm_stat; iostat; sleep 5; done &  echo 123123123123 "
