@@ -1,0 +1,19 @@
+name: Matrix Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  A-matrix-job:
+    strategy:
+      fail-fast: false
+      matrix:
+        Build-tool: [Bazel, Make]
+        Other-key: [2, 5, 42]
+    runs-on: macos-10.15
+    steps:
+      - name: This is a step
+        run: |
+          echo "The build tool here is ${{ matrix.Build-tool }}"
+          echo "And the other key is: ${{ matrix.Other-key }}"
+      
