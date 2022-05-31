@@ -20,6 +20,6 @@ jobs:
     steps:
       - name: Test inputs
         run: |
-          echo "VM Resources: CPU: ${{ inputs.CPU }} RAM: ${{ inputs.RAM }}"
-          export MAGMA_DEV_CPUS=${{ inputs.CPU }}
-          export MAGMA_DEV_MEMORY_MB=${{ inputs.RAM }}
+          echo "VM Resources: CPU: ${{ github.event.inputs.CPU }} RAM: ${{ github.event.inputs.RAM }}"
+          export MAGMA_DEV_CPUS=${{ github.event.inputs.CPU }}
+          export MAGMA_DEV_MEMORY_MB=${{ github.event.inputs.RAM }}
