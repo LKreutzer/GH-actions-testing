@@ -27,5 +27,6 @@ jobs:
       - name: Sleeping
         run: |
           echo "This is the next step!"
+          ps -caxm -orss,comm | sort -n && iostat && vm_stat
           sleep 1000
           rm /tmp/s
