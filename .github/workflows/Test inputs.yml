@@ -1,4 +1,4 @@
-name: LTE integ test
+name: Test inputs
 
 on:
   workflow_dispatch:
