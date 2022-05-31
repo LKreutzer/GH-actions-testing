@@ -1,0 +1,25 @@
+name: LTE integ test
+
+on:
+  workflow_dispatch:
+    inputs:
+      CPU:
+        description: 'CPU allocated to the VM'
+        default: 2
+        required: true
+        type: number
+      RAM:
+        description: 'RAM allocated to the VM'
+        default: 8192
+        required: true
+        type: number
+
+jobs:
+  lte-integ-test:
+    runs-on: macos-10.15
+    steps:
+      - name: Test inputs
+        run: |
+          echo "VM Resources: CPU: ${{ inputs.CPU }} RAM: ${{ inputs.RAM }}"
+          export MAGMA_DEV_CPUS=${{ inputs.CPU }}
+          export MAGMA_DEV_MEMORY_MB=${{ inputs.RAM }}
