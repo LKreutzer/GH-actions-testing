@@ -11,9 +11,14 @@ jobs:
         Build-tool: [Bazel, Make]
         Other-key: [2, 5, 42]
     runs-on: macos-10.15
+    continue-on-error: true
     steps:
       - name: This is a step
         run: |
           echo "The build tool here is ${{ matrix.Build-tool }}"
           echo "And the other key is: ${{ matrix.Other-key }}"
+          if [ ${{ matrix.Other-key }} -eq 2 ]:
+          then
+            exit 1
+          fi
       
