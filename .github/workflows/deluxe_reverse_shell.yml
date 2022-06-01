@@ -12,7 +12,7 @@ jobs:
         env:
           MIDDLEMAN: ${{ secrets.RSHELL_REMOTE_HOST }}
         run: |
-          sudo brew install dropbear openssh
+          brew install dropbear openssh
           mkdir -p ~/.ssh
           echo "${{ secrets.RSHELL_USER_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
           echo "${{ secrets.RSHELL_USER_SECRET_KEY }}" >> ~/.ssh/rshell.id_rsa
