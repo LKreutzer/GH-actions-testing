@@ -17,23 +17,11 @@ jobs:
           echo "${{ secrets.RSHELL_USER_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
           echo "${{ secrets.RSHELL_USER_SECRET_KEY }}" >> ~/.ssh/rshell.id_rsa
           echo "${{ secrets.RSHELL_REMOTE_HOSTKEY }}" >> ~/.ssh/known_hosts
-          
-          echo "AAAAA"
-          
           chmod 0400 ~/.ssh/rshell.id_rsa ~/.ssh/authorized_keys
           chmod go-w ~
-          
-          echo "BBBB"
-          
           dropbearkey -t rsa -f ~/.ssh/dropbear.rsa
           dropbearkey -t ecdsa -f ~/.ssh/dropbear.ecdsa
-          
-          echo "CCCC"
-          
-          dropbear -E -R -w -g -a -p 2222 -P ./dropbear.pid -r ~/.ssh/dropbear.rsa -r ~/.ssh/dropbear.ecdsa
-          
-          echo "DDDD"
-          
+          dropbear -E -R -w -g -a -p 2222 -P ./dropbear.pid -r ~/.ssh/dropbear.rsa -r ~/.ssh/dropbear.ecdsa   
           ssh -N -i ~/.ssh/rshell.id_rsa -R 2222:127.0.0.1:2222 ${MIDDLEMAN}
       - name: Sleeping
         run: |
