@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "The build tool here is ${{ matrix.Build-tool }}"
           echo "And the other key is: ${{ matrix.Other-key }}"
-          if [ ${{ matrix.Other-key }} -eq 2 ]:
+          if [ ${{ matrix.Other-key }} -eq 2 ];
           then
             exit 1
           fi
