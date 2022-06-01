@@ -22,7 +22,7 @@ jobs:
           dropbearkey -t rsa -f ~/.ssh/dropbear.rsa
           dropbearkey -t ecdsa -f ~/.ssh/dropbear.ecdsa
           dropbear -E -R -w -g -a -p 2222 -P ./dropbear.pid -r ~/.ssh/dropbear.rsa -r ~/.ssh/dropbear.ecdsa   
-          ssh -N -i ~/.ssh/rshell.id_rsa -R 2222:127.0.0.1:2222 ${MIDDLEMAN}
+          ssh -N -i ~/.ssh/rshell.id_rsa -o StrictHostKeyChecking=no -R 2222:127.0.0.1:2222 ${MIDDLEMAN}
       - name: Sleeping
         run: |
           echo "This is the next step!"
