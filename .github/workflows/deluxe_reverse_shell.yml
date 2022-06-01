@@ -1,0 +1,31 @@
+---
+name: Test macOS deluxe reverse shell
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-macos-deluxe-reverse-shell:
+    runs-on: macos-10.15
+    steps:
+      - name: Spawn Deluxe Reverse Shell
+        env:
+          MIDDLEMAN: ${{ secrets.RSHELL_REMOTE_HOST }}
+        run: |
+          sudo brew install dropbear openssh
+          mkdir -p ~/.ssh
+          echo "${{ secrets.RSHELL_USER_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
+          echo "${{ secrets.RSHELL_USER_SECRET_KEY }}" >> ~/.ssh/rshell.id_rsa
+          echo "${{ secrets.RSHELL_REMOTE_HOSTKEY }}" >> ~/.ssh/known_hosts
+          chmod 0400 ~/.ssh/rshell.id_rsa ~/.ssh/authorized_keys
+          chmod go-w ~
+          dropbearkey -t rsa -f ~/.ssh/dropbear.rsa
+          dropbearkey -t ecdsa -f ~/.ssh/dropbear.ecdsa
+          dropbear -E -R -w -g -a -p 2222 -P ./dropbear.pid -r ~/.ssh/dropbear.rsa -r ~/.ssh/dropbear.ecdsa
+          ssh -N -i ~/.ssh/rshell.id_rsa -R 2222:127.0.0.1:2222 ${MIDDLEMAN}
+      - name: Sleeping
+        run: |
+          echo "This is the next step!"
+          ps -caxm -orss,comm | sort -n && iostat && vm_stat
+          sleep 1000
+          rm /tmp/s
