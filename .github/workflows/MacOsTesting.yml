@@ -7,6 +7,9 @@ jobs:
   testing-job:
     runs-on: macos-10.15
     steps:
+      - name: Redirect output to stderr
+        run: |
+          echo "This is the output!" 1>&2
       - name: Background process
         run: |
           brew install coreutils
