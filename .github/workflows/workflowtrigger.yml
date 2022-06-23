@@ -3,7 +3,7 @@ name: Test workflow trigger
 on:
   push:
     branches:
-      - GH-actions-testing/master
+      - master
       - 'v1.*'
 
 jobs:
