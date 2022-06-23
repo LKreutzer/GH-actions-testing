@@ -55,11 +55,11 @@ jobs:
         run: |
           echo "If you can see this then the always() works!"
 
- job_with_braces:
+  job_with_braces:
     runs-on: ubuntu-latest
     needs:
       - path_filter
-     steps:
+    steps:
       - name: Logging
         run: |
           echo "This is job_with_braces:"
