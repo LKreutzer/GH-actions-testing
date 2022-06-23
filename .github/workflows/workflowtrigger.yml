@@ -7,9 +7,20 @@ on:
       - 'v1.*'
 
 jobs:
-  Testing-the-trigger:
+  path_filter:
+    if: github.repository_owner == 'LKreutzer'
     runs-on: ubuntu-latest
+    steps:
+      # Need to get git on push event
+      - name: Path filter step
+        run: |
+          echo "The path filter ran!"
+
+  testing_the_trigger:
+    runs-on: ubuntu-latest
+    needs:
+      - path_filter
     steps:
       - name: Test
         run: |
-          echo "It ran!"
+          echo "The Testing-the-trigger job ran!"
