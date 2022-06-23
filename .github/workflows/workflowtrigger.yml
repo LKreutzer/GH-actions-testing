@@ -1,0 +1,15 @@
+name: Test workflow trigger
+
+on:
+  push:
+    branches:
+      - GH-actions-testing/master
+      - 'v1.*'
+
+jobs:
+  lte-integ-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo "It ran!"
