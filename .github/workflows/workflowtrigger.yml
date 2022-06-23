@@ -3,7 +3,7 @@ name: Test workflow trigger
 on:
   push:
     branches:
-      - master
+      - main
       - 'v1.*'
 
 jobs:
