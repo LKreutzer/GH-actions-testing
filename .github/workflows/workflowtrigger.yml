@@ -8,7 +8,7 @@ on:
 
 jobs:
   path_filter:
-    if: github.repository_owner == 'LKreutzer'
+    if: github.repository_owner == 'not-LKreutzer'
     runs-on: ubuntu-latest
     steps:
       # Need to get git on push event
