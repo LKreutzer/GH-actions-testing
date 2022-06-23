@@ -18,7 +18,9 @@ jobs:
         run: |
           echo "The path filter ran!"
       - name: This is the if step
-        if: github.repository_owner == 'LKreutzer' && github.ref_name == 'main'
+        if: |
+          github.repository_owner == 'LKreutzer' &&
+          github.ref_name == 'main'
         run: |
           echo "This is the branch LKreutzer/GH-actions-testing/main!"
 
