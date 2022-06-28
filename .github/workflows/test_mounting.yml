@@ -29,7 +29,8 @@ jobs:
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             echo "This is the first bazel build:"
-            bazel build //main:hello-world
+            bazel build //main:hello-world \
+              --profile=profile_build1
       - name: Bazel build again
         uses: addnab/docker-run-action@v3
         with:
@@ -38,5 +39,6 @@ jobs:
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             echo "This is the second bazel build:"
-            bazel build //main:hello-world
+            bazel build //main:hello-world \
+              --profile=profile_build2
             
