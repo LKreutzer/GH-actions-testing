@@ -26,7 +26,7 @@ jobs:
         with:
           image: ${{ env.BAZEL_BASE_IMAGE }}
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
-          options: -v /tmp/somefolder:/root/.cache/bazel -v ${{ github.workspace }}:/workspaces
+          options: -v /tmp/somefolder:/root/.cache/bazel -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             echo "This is the first bazel build:"
             bazel build //main:hello-world
@@ -35,7 +35,7 @@ jobs:
         with:
           image: ${{ env.BAZEL_BASE_IMAGE }}
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
-          options:  -v /tmp/somefolder:/root/.cache/bazel -v ${{ github.workspace }}:/workspaces
+          options:  -v /tmp/somefolder:/root/.cache/bazel -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             echo "This is the second bazel build:"
             bazel build //main:hello-world
