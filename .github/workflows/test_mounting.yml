@@ -25,8 +25,7 @@ jobs:
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
           options: -v /tmp/bazel:/tmp/bazel
           run: |
-            cd /tmp/bazel
-            echo "Testing the mounting!" > thisisanewfile
+            bazel build //main:hello-world
       - name: Read the same file in the next step
         uses: addnab/docker-run-action@v3
         with:
@@ -34,6 +33,5 @@ jobs:
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
           options: -v /tmp/bazel:/tmp/bazel
           run: |
-            cd /tmp/bazel
-            cat thisisanewfile
+            bazel build //main:hello-world
             
