@@ -39,7 +39,7 @@ jobs:
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             echo "This is the second bazel build:"
-            bazel test //... \
+            bazel build //... \
               --profile=profile_test \
               --test_output=errors \
               --cache_test_results=no
