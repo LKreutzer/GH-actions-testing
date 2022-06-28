@@ -7,5 +7,5 @@ cc_binary(
 
 cc_test(
     name = "empty-test",
-    deps = ":hello-world",
+    deps = [":hello-world"],
 )
