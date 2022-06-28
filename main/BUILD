@@ -1,6 +1,11 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_test")
 
 cc_binary(
     name = "hello-world",
     srcs = ["hello-world.cc"],
+)
+
+cc_test(
+    name = "empty-test",
+    deps = ":hello-world",
 )
