@@ -40,5 +40,8 @@ jobs:
           run: |
             echo "This is the second bazel build:"
             bazel build //main:hello-world \
-              --profile=profile_build2
+              --profile=profile_build2 \
+              --test_output=errors \
+              --cache_test_results=no
+              
             
