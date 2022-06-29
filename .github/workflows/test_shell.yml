@@ -1,0 +1,13 @@
+name: Test shell
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test_shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test shell
+        run: |
+          printf "Output 1!"
+          printf "\n\n\nOutput 2!"
