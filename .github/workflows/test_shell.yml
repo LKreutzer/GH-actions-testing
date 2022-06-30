@@ -7,9 +7,16 @@ jobs:
   test_shell:
     runs-on: ubuntu-latest
     steps:
-      - name: Test shell
+      - name: Logging to stdout and stderr
         run: |
           printf "Output 1!\n" &&
           printf "\n\n\nOutput 2!\n" 1>&2 &&
           printf "\n\n\nOutput 3!\n" &&
+          printf "\n\n\nOutput 4!\n" 1>&2
+          
+      - name: Logging to stderr
+        run: |
+          printf "Output 1!\n" 1>&2 &&
+          printf "\n\n\nOutput 2!\n" 1>&2 &&
+          printf "\n\n\nOutput 3!\n" 1>&2 &&
           printf "\n\n\nOutput 4!\n" 1>&2
