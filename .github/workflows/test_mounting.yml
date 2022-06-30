@@ -54,11 +54,11 @@ jobs:
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
-            printf "This is the third bazel build:" &&
+            printf "This is the third bazel build:" 1>&2 &&
             bazel build //... \
               --profile=profile_test \
               --test_output=errors \
               --cache_test_results=no &&
-            printf "Third bazel build is finished!"
+            printf "Third bazel build is finished!" 1>&2
               
             
