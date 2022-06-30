@@ -29,8 +29,10 @@ jobs:
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             printf '\r\r\r%s\r\r\r' 'This is the first bazel build:' &&
+            printf '\r\r\r%s\r\r\r' 'This is some other logging...' &&
             bazel build //... \
               --profile=profile_build &&
+            printf '\r\r\r%s\r\r\r' 'Some more logging...' &&
             printf "\r\r\rFirst bazel build is finished!\r\r\r" 1>&2
       - name: Bazel build again
         uses: addnab/docker-run-action@v3
