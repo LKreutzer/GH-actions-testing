@@ -9,5 +9,7 @@ jobs:
     steps:
       - name: Test shell
         run: |
-          printf "Output 1!" && \
-          printf "\n\n\nOutput 2!"
+          printf "Output 1!\n" &&
+          printf "\n\n\nOutput 2!\n" 1>&2 &&
+          printf "\n\n\nOutput 3!\n" &&
+          printf "\n\n\nOutput 4!\n" 1>&2 &&
