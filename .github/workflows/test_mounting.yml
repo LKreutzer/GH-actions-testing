@@ -28,9 +28,10 @@ jobs:
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
-            echo "This is the first bazel build:"
+            printf "This is the first bazel build:\n\n" &&
             bazel build //... \
-              --profile=profile_build
+              --profile=profile_build &&
+            printf "\n\nFirst bazel build is finished!\n\n"
       - name: Bazel build again
         uses: addnab/docker-run-action@v3
         with:
@@ -38,10 +39,11 @@ jobs:
           # TODO: Remove work-around mount of Github workspace to /magma (https://github.com/addnab/docker-run-action/issues/11)
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
-            echo "This is the second bazel build:"
+            printf "This is the second bazel build:\n\n" &&
             bazel build //... \
               --profile=profile_test \
               --test_output=errors \
-              --cache_test_results=no
+              --cache_test_results=no &&
+            printf "\n\nSecond bazel build is finished!\n\n"
               
             
