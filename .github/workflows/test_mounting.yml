@@ -55,6 +55,7 @@ jobs:
           options: -v ${{ github.workspace }}:/workspaces -v /tmp/otherfolder:/tmp/bazel
           run: |
             printf "This is the third bazel build:" 1>&2 &&
+            exit 1 &&
             bazel build //... \
               --profile=profile_test \
               --test_output=errors \
