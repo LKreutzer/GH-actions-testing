@@ -1,0 +1,44 @@
+name: "Check if condition for path filter"
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - master
+
+jobs:
+  path_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      files_changed: ${{ steps.changes.outputs.files_changed }}
+    if: github.repository_owner == 'LKreutzer' || github.event_name == 'workflow_dispatch'
+    steps:
+      # Need to get git on push event
+      - uses: dorny/paths-filter@b2feaf19c27470162a626bd6fa8438ae5b263721 # pin@v2
+        if: github.event_name == 'pull_request'
+        id: changes
+        with:
+          filters: |
+            files_changed:
+              - '.github/workflows/*.yml'
+
+  some_job:
+    needs: path_filter
+    # Only run workflow if this is a scheduled run on master branch,
+    # or a pull_request that skip-duplicate-action wants to run again.
+    if: |
+      (github.event_name == `schedule` && github.ref == 'refs/heads/master')
+        || ${{ needs.path_filter.outputs.files_changed == 'true' }}
+    name: Some job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Some step
+        shell: bash
+        run: |
+          echo "The job is running!"
+
+   
