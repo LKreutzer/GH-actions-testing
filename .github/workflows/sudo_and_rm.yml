@@ -1,0 +1,22 @@
+---
+name: "Test sudo"
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+
+jobs:
+  mounting_test:
+    name: Test sudo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Maximize build space
+        shell: bash
+        run: |
+          printf "Available storage before:"
+          df -h --total
+          printf "Removing /usr/share/dotnet, /usr/local/lib/android, /opt/ghc"
+          sudo rm -rf \
+            /usr/share/dotnet \
+            /usr/local/lib/android \
+            /opt/ghc \
+          printf "Available storage after:"
+          df -h --total
