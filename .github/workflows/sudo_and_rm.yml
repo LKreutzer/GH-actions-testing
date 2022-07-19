@@ -11,12 +11,12 @@ jobs:
       - name: Maximize build space
         shell: bash
         run: |
-          printf "Available storage before:"
+          echo "Available storage before:"
           df -h --total
-          printf "Removing /usr/share/dotnet, /usr/local/lib/android, /opt/ghc"
-          sudo rm -rf \
+          echo "Removing /usr/share/dotnet, /usr/local/lib/android, /opt/ghc"
+          rm -rf \
             /usr/share/dotnet \
             /usr/local/lib/android \
             /opt/ghc \
-          printf "Available storage after:"
+          echo "Available storage after:"
           df -h --total
