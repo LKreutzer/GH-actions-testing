@@ -14,9 +14,9 @@ jobs:
           echo "Available storage before:"
           df -h --total
           echo "Removing /usr/share/dotnet, /usr/local/lib/android, /opt/ghc"
-          rm -rf \
+          sudo rm -rf \
             /usr/share/dotnet \
             /usr/local/lib/android \
-            /opt/ghc \
+            /opt/ghc
           echo "Available storage after:"
           df -h --total
