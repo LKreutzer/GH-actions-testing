@@ -7,6 +7,9 @@ jobs:
   test_shell:
     runs-on: ubuntu-latest
     steps:
+      - name: Print link to current workflow
+        run: |
+          echo "https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" 
       - name: Logging to stdout and stderr
         run: |
           printf "Output 1!\n" &&
